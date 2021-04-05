@@ -1,0 +1,10 @@
+body {
+    display: grid;
+    text-align: center;
+}
+h1 {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    color: darkgreen;
+    text-align: center;
+}
