@@ -24,7 +24,6 @@ issueRouter.get("/user", (req, res, next) => {
     })
 })
 
-
 issueRouter.post("/", (req, res, next) => {
     req.body.user = req.user._id
     const newIssue = new Issue(req.body)

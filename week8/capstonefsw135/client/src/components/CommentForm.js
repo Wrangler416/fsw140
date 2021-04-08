@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
 const initInputs = {
-  title: "",
-  description: ""
+  comment: ""
 }
 
 export default function IssueForm(props){
   const [inputs, setInputs] = useState(initInputs)
-  const {addIssue} = props
+  const {addComment} = props
 
   function handleChange(e){
     const {name, value} = e.target
@@ -19,27 +18,21 @@ export default function IssueForm(props){
 
   function handleSubmit(e){
     e.preventDefault()
-    addIssue(inputs)
+    addComment(inputs)
     setInputs(initInputs)
   }
 
-  const { title, description} = inputs
+  const { comment } = inputs
   return (
     <form onSubmit={handleSubmit}>
       <input 
         type="text" 
-        name="title" 
-        value={title} 
+        name="comment" 
+        value={comment} 
         onChange={handleChange} 
-        placeholder="Title"/>
-      <input 
-        type="text" 
-        name="description" 
-        value={description} 
-        onChange={handleChange} 
-        placeholder="Description"/>
-        
-      <button>Add Political Issue</button>
+        placeholder="Comment"/>
+      
+      <button>Add Your Comment</button>
     </form>
   )
 }

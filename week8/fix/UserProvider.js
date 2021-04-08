@@ -15,13 +15,16 @@ export default function UserProvider(props){
     const initState = {
         user: JSON.parse(localStorage.getItem("user")) || {},
         token: localStorage.getItem("token") || "", 
+        todos: [], // (don't think you're using the todos ..)
+        // Todd - Added the following lines:
         issues: JSON.parse(localStorage.getItem('issues')) || [],
+        publicIssues: JSON.parse(localStorage.getItem('publicIssues')) || [],
+        // end Add
         errMsg: ""
     }
 
     const [userState, setUserState] = useState(initState)
     
-
     function signup(credentials) {
         axios.post("/auth/signup", credentials)
         .then(res => {
@@ -43,7 +46,8 @@ export default function UserProvider(props){
             const {user, token} = res.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
-            getUserComments()
+            getUserIssues()
+            getPublicIssues()
             setUserState(prevUserState => ({
                 ...prevUserState, 
                 user,
@@ -55,11 +59,18 @@ export default function UserProvider(props){
     function logout() {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
+        // Todd - Added the following lines:
         localStorage.removeItem('issues')
+        localStorage.removeItem('publicIssues')
+        // end Add
         setUserState({
             user: {},
             token: "",
-            issues: []
+            todos: [], // // (don't think you're using the todos ..)
+            // Todd - Added the following lines:
+            issues: [],
+            publicIssues: []
+            // end Add
         })
     }
 
@@ -77,15 +88,39 @@ export default function UserProvider(props){
         }))
     }
 
-    function getUserComments(){
-        userAxios.get("/api/issues/user")
+    function getUserIssues(){
+        userAxios.get("/api/issue/user")
         .then(res => {
 
+            // Todd - Added the following line:
             localStorage.setItem('issues', JSON.stringify(res.data))
+            // end Add
+
             setUserState(prevState => ({
                 ...prevState, 
-                comments: res.data,
-                issues: res.data
+                // Todd - Added the following line:
+                issues: res.data,
+                // end Add
+                comments: res.data
+        }))
+    })
+        .catch(err => console.log(err.response.data.errMsg))
+    }
+
+    function getPublicIssues(){
+        userAxios.get("/api/issue")
+        .then(res => {
+
+            // Todd - Added the following line:
+            localStorage.setItem('publicIssues', JSON.stringify(res.data))
+            // end Add
+
+            setUserState(prevState => ({
+                ...prevState, 
+                // Todd - Added the following line:
+                publicIssues: res.data,
+                // end Add
+                comments: res.data
         }))
     })
         .catch(err => console.log(err.response.data.errMsg))
@@ -96,7 +131,9 @@ export default function UserProvider(props){
         .then(res => {
             setUserState(prevState => ({
                 ...prevState, 
+                // Todd - modified the following line:
                 issues: [...prevState.issues, res.data]
+                // end Mod
             }))
         })
         .catch(err => console.log(err.response.data.errMsg))

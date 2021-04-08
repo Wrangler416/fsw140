@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const morgan = require("morgan")
 const expressJwt = require("express-jwt")
 
-app.use(express.json())
+app.use("/", express.json())
 app.use(morgan("dev"))
 
 mongoose.connect(

@@ -17,7 +17,7 @@ const IssueSchema = new Schema({
     type: String
   },
 
-  likes: [
+  votes: [
     {
       user: {
         type: Schema.Types.ObjectId,
