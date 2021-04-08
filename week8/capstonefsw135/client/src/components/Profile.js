@@ -6,7 +6,7 @@ import Issue from "./Issue"
 
 
 export default function Profile(){
-  const {user: {username}, addIssue, issues } = useContext(UserContext)
+  const {user: {username}, addIssue, issues, comments } = useContext(UserContext)
 
   return (
     <div>
@@ -15,7 +15,7 @@ export default function Profile(){
       <Issue /> 
       <IssueForm addIssue={addIssue} /> 
       <h3>Your Issues</h3>
-      <IssueList issues={issues} /> 
+      <IssueList issues={issues} comments={comments} /> 
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Issue(props){
+export default function Comment(props){
   const {title, description, imgUrl, _id} = props
   return (
     <div>
