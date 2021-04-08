@@ -19,5 +19,8 @@
     "mongod": "^2.0.0",
     "mongoose": "^5.12.3",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.13.15"
   }
 }

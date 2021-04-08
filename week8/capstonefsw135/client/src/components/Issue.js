@@ -1,14 +1,16 @@
 import React from 'react'
+import CommentForm from "./CommentForm"
+import CommentList from "./CommentList"
 
 export default function Issue(props){
-  const {title, description, imgUrl, _id} = props
+  const {title, description, _id} = props
   return (
     <div>
       <h1>{title}</h1>
       <h3>{description}</h3>
-      <img src={imgUrl} alt={imgUrl} width={300}/>
+      <CommentForm />
+      <CommentList />
     </div>
   )
 }
-
 

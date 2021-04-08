@@ -1,38 +1,39 @@
 import React, { useState } from 'react'
 
-const initInputs = {
-  comment: ""
+const initInput = {
+  comment: []
 }
 
-export default function IssueForm(props){
-  const [inputs, setInputs] = useState(initInputs)
-  const {addComment} = props
+export default function CommentForm(props){
+  const [input, setInput] = useState(initInput)
+  const {_id, comment} = props
 
   function handleChange(e){
     const {name, value} = e.target
-    setInputs(prevInputs => ({
-      ...prevInputs,
+    setInput(prevInput => ({
+      ...prevInput,
       [name]: value
     }))
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
-    addComment(inputs)
-    setInputs(initInputs)
+  function sendComment(e){
+    e.preventdefault()
+    sendComment(input, _id)
+    setInput(initInput)
   }
 
-  const { comment } = inputs
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <input 
         type="text" 
         name="comment" 
-        value={comment} 
+        value={input.comment} 
         onChange={handleChange} 
         placeholder="Comment"/>
       
-      <button>Add Your Comment</button>
+      <button onClick={sendComment}>Add Your Comment</button>
     </form>
   )
 }
+
+

@@ -2,8 +2,7 @@ import React from 'react'
 import Issue from './Issue.js'
 
 export default function IssueList(props) {
-  const { issues, comments } = props
-console.log(issues)
+  const { issues, addIssue } = props
 
   return (
     <div>
@@ -11,7 +10,7 @@ console.log(issues)
         <Issue 
           {...issue} 
           key={issue._id} 
-          comments={comments}
+          addIssue={addIssue}
         />
       )}
     </div>
@@ -19,15 +18,5 @@ console.log(issues)
 }
 
 
-
-
-// {issues.map(issues => <Issue key={issues._id} {...issues}/>)}
-
-    /* {Issue.map((Issue) => {
-        return (   <Issue 
-          key={Issue._id}
-          {...Issue}
-          /> )
-      })} */
 
 

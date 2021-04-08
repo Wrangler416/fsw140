@@ -12,23 +12,13 @@ const IssueSchema = new Schema({
   },
   description: {
     type: String
-  },
-  imgUrl: {
-    type: String
-  },
+  }
 
-  votes: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      },
-      count: {
-        type: String,
-        required: true
-      }
-    }
-  ]
+  // votes: {
+  //   type: Number,
+  //   required: true
+  //   }
+  
 })
 
 module.exports = mongoose.model('Issue', IssueSchema)
