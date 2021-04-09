@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const initInput = {
-  comment: []
+  comment: ""
 }
 
 export default function CommentForm(props){
